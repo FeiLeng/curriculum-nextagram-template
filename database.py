@@ -1,5 +1,7 @@
 import os
 from urllib.parse import urlparse
+DB_TIMEOUT=300 # 5 minutes
+DB_POOL=5
 
 def parse_db_url(database_url):
     parsed = urlparse(database_url)
