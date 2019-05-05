@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from models import user
+from werkzeug.security import generate_password_hash
 
 
 users_blueprint = Blueprint('users',
                             __name__,
                             template_folder='templates')
+
 
 
 @users_blueprint.route('/new', methods=['GET'])
@@ -13,13 +15,14 @@ def new():
 
 @users_blueprint.route("/signup_form")
 def signup_form():
-   s = user.User(username=request.args['username'], email=request.args['email'], password=request.args['password'])
+    hashed_password = generate_password_hash(request.args['password'])
+    s = user.User(username=request.args['username'], email=request.args['email'], password=hashed_password)
 
-   if s.save():
-      flash("Successfully saved")
-      return redirect(url_for('users.new'))
-   else: 
-      return render_template('users.new.html', username=request.args['username'], email=request.args['email'], password=request.args['password'])
+    if s.save():
+        flash("Successfully saved")
+        return redirect(url_for('users.new'))
+    else: 
+        return render_template('users.new.html', username=request.args['username'], email=request.args['email'], password=request.args['password'])
 
 
 
