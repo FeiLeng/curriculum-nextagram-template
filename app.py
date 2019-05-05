@@ -25,3 +25,6 @@ def _db_close(exc):
         print(db)
         print(db.close())
     return exc
+
+if __name__ == '__main__':
+    app.run(debug=True)
