@@ -13,7 +13,7 @@ users_blueprint = Blueprint('users',
 def new():
     return render_template('users/new.html')
 
-@users_blueprint.route("/signup_form")
+@users_blueprint.route("/signup_form", methods=['POST'])
 def signup_form():
     hashed_password = generate_password_hash(request.args['password'])
     s = user.User(username=request.args['username'], email=request.args['email'], password=hashed_password)
@@ -38,7 +38,10 @@ def show(username):
 
 @users_blueprint.route('/', methods=["GET"])
 def index():
-    return "USERS"
+    user_array=[]
+    for person in user.User:
+        user_array.append(person.username)
+    return render_template('users/user.html',username=user_array)
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])
