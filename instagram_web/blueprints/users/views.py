@@ -3,6 +3,7 @@ from models import user
 from werkzeug.security import generate_password_hash
 
 
+
 users_blueprint = Blueprint('users',
                             __name__,
                             template_folder='templates')
@@ -14,21 +15,21 @@ def new():
     return render_template('users/new.html')
 
 @users_blueprint.route("/signup_form", methods=['POST'])
-def signup_form():
-    hashed_password = generate_password_hash(request.args['password'])
-    s = user.User(username=request.args['username'], email=request.args['email'], password=hashed_password)
+def create():
+    hashed_password = generate_password_hash(request.form['password'])
+    s = user.User(username=request.form['username'], email=request.form['email'], password=hashed_password)
 
     if s.save():
         flash("Successfully saved")
         return redirect(url_for('users.new'))
     else: 
-        return render_template('users.new.html', username=request.args['username'], email=request.args['email'], password=request.args['password'])
+        return render_template('users/new.html', username=request.form['username'], email=request.form['email'], password=request.form['password'])
 
 
 
-@users_blueprint.route('/', methods=['POST'])
-def create():
-    pass
+# @users_blueprint.route('/', methods=['POST'])
+# def create():
+#     pass
 
 
 @users_blueprint.route('/<username>', methods=["GET"])
