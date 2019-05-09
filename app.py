@@ -11,7 +11,7 @@ web_dir = os.path.join(os.path.dirname(
 
 csrf = CSRFProtect()
 app = Flask('NEXTAGRAM', root_path=web_dir)
-csrf.init_app(app)
+csrf.init_app(app) 
 login_manager = LoginManager()
 login_manager.init_app(app)
 

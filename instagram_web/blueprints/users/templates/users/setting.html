@@ -1,16 +1,16 @@
 {% extends "_layout.html" %}
 {% block content %}
-<h1>Hello {{current_user.username}}</h1>
-<form method='POST' action={{ url_for('sessions.create') }}>
+<form method='POST' action="{{url_for('users.update', username_id=current_user.id)}}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" name="username" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" name="password" class="form-control" />
+        <label for="email">Email:</label>
+        <input type="email" name="email" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Review Change</button>
+    <a href="/" class="btn btn-default">Cancel</a>
 </form>
 {% endblock %}

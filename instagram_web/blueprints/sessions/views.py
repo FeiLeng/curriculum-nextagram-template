@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, session, url_fo
 from models.user import User
 from werkzeug.security import check_password_hash
 from app import login_manager
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user,current_user
 
 
 sessions_blueprint = Blueprint('sessions',
@@ -48,6 +48,10 @@ def load_user(user_id):
 def destroy():
     logout_user()
     return redirect(url_for('sessions.new'))
+
+# @sessions_blueprint.route("/loggedin")
+# def test():
+#     return render_template('sessions/test.html')
 
 @sessions_blueprint.route('/', methods=['POST'])
 def create1():

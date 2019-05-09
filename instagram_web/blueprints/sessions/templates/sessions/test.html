@@ -1,7 +1,12 @@
 {% extends "_layout.html" %}
 {%block content%}
 {%if current_user.is_authenticated%}
-<h1>Hi {{current_user.username}}</h1>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Hi {{current_user.username}}!</strong> Welcome back to nextagram.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 {%endif%}
-<a href="{{ url_for('sessions.destroy') }}">Logout</a>
+<!-- <a href="{{ url_for('sessions.destroy') }}">Logout</a> -->
 {%endblock%}
