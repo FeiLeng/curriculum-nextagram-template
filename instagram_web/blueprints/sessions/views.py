@@ -49,10 +49,6 @@ def destroy():
     logout_user()
     return redirect(url_for('sessions.new'))
 
-# @sessions_blueprint.route("/loggedin")
-# def test():
-#     return render_template('sessions/test.html')
-
 @sessions_blueprint.route('/', methods=['POST'])
 def create1():
     pass

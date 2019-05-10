@@ -1,6 +1,17 @@
 {% extends "_layout.html" %}
 {% block content %}
-{%for x in username%}
-<h3>{{x}}</h3>
-{%endfor%}
+<img src="{{current_user.profilepic}}" alt="" style="border-radius:100px; width:200px; height:200px">
+<h2>{{current_user.username}}</h2>
+
+<br/>
+<h2>Photos</h2>
+<br/>
+
+{% for photo in images %}
+<img src="{{photo}}" alt="" style="width:250px; height:200px" method="GET">
+{% endfor %}
+
+<a href="{{ url_for('images.show') }}"  method="GET">
+<button type="button" class="btn btn-light" style="width:250px; height:200px">Add photo</button>
+</a>
 {% endblock %}

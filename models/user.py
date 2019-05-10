@@ -8,5 +8,6 @@ class User(BaseModel):
     password = pw.CharField(unique=False)
     profilepic = pw.CharField(unique=False, null=True)
 
+
 def is_authenticated():
     return True

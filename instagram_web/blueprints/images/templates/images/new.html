@@ -1,0 +1,12 @@
+{% extends "_layout.html" %}
+{% block content %}
+<h1>Upload Your Photos Bro</h1>
+<form action="{{ url_for('images.create') }}" method="POST" enctype="multipart/form-data" >
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label for="images">Select image to upload:</label>
+    <br/>
+    <input type="file" name="images">
+    <br/>
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

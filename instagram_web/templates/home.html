@@ -5,5 +5,9 @@
 {% block header %}
 {% endblock %}
 {% block content %}
-<h1>Create a new account</h1>
+<h1>Create an account</h1>
+{%for x in username%}
+<h3>{{x}}</h3>
+{%endfor%}
+
 {% endblock %}
